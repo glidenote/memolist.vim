@@ -19,7 +19,7 @@ You may also want to add a few mappings to stream line the behavior:
     let g:memolist_memo_suffix = "markdown"
     let g:memolist_memo_suffix = "txt"
     let g:memolist_memo_date = "%Y-%m-%d %H:%M"
-    let g:memolist_memo_date = "epoch          
+    let g:memolist_memo_date = "epoch"
     let g:memolist_memo_date = "%D %T"
     let g:memolist_prompt_tags = "true"
     let g:memolist_prompt_categories = "true"
