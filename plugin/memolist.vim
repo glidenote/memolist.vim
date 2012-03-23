@@ -76,11 +76,14 @@ function MemoList()
 endfunction
 command! -nargs=0 MemoList :call MemoList()
 
-function MemoGrep()
-  let word = input("MemoGrep word: ")
+function MemoGrep(word)
+  let word = a:word
+  if word == ''
+    let word = input("MemoGrep word: ")
+  endif
   exe "Vimgrep " word . " " . g:memolist_path . "/*"
 endfunction
-command! -nargs=0 MemoGrep :call MemoGrep()
+command! -nargs=? MemoGrep :call MemoGrep(<q-args>)
 
 function MemoNew(title)
   let date = g:memolist_memo_date
