@@ -43,6 +43,10 @@ Grep Memo Directory:
 
 Copy it to your pugin directory.
 
+## Requirements
+
+ * [fuenor/qfixgrep](https://github.com/fuenor/qfixgrep)
+
 ## License
 
 Lcense: Same terms as Vim itself (see [license](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license))

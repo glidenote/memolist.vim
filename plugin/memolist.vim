@@ -78,7 +78,7 @@ command! -nargs=0 MemoList :call MemoList()
 
 function MemoGrep()
   let word = input("MemoGrep word: ")
-  exe "vimgrep " word . " " . g:memolist_path . "/*"
+  exe "Vimgrep " word . " " . g:memolist_path . "/*"
 endfunction
 command! -nargs=0 MemoGrep :call MemoGrep()
 
