@@ -12,7 +12,7 @@ Install in ~/.vim
 
 Set the path to your Jekyll Blog in your vimrc.
 
-The default direcory path is "~/memo". You can override these if you like. 
+The default directory path is "~/memo". You can override these if you like. 
 
 Example:
     let g:memolist_path = "path/to/dir"
@@ -40,6 +40,9 @@ COMMANDS                                        *memolist-commands*
 
                                                 *memolist-:MemoNew*
 :MemoNew                Create a new Memo
+
+                                                *memolist-:MemoGrep*
+:MemoGrep               Grep Memo Directory
 
 ==============================================================================
 ABOUT                                           *memolist-about*

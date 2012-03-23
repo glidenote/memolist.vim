@@ -13,6 +13,7 @@ You may also want to add a few mappings to stream line the behavior:
 
     map <Leader>mn  :MemoNew<CR>
     map <Leader>ml  :MemoList<CR>
+    map <Leader>mg  :MemoGrep<CR>
 
 ## options:
 
@@ -33,6 +34,10 @@ Create New Memo:
 Show Memo List:
 
     :MemoList
+
+Grep Memo Directory:
+
+    :MemoGrep
 
 ## Install
 
