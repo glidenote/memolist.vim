@@ -1,0 +1,50 @@
+*memolist.txt* 
+
+Author: Akira Maeda                             *memolist-author*
+License: Same terms as Vim itself (see |license|)
+
+This plugin is only available if 'compatible' is not set.
+
+==============================================================================
+INTRODUCTION                                    *memolist*
+
+Install in ~/.vim
+
+Set the path to your Jekyll Blog in your vimrc.
+
+Example:
+    let g:memolist_path = "path/to/memo"
+
+The default memo suffix is "markdown". You can override these if you like. 
+enable a prompt for memo tags and/or memo categories during create.
+
+Example:
+    let g:memolist_memo_suffix = "txt"
+    let g:memolist_memo_date = "%Y-%m-%d %H:%M"
+    let g:memolist_memo_date = "epoch"
+    let g:memolist_memo_date = "%D %T"
+    let g:memolist_prompt_tags = "true"
+    let g:memolist_prompt_categories = "true"
+
+You may also want to add a few mappings to stream line the behavior:
+    map <Leader>mn  :MemoNew<CR>
+    map <Leader>ml  :MemoList<CR>
+
+==============================================================================
+COMMANDS                                        *memolist-commands*
+
+                                                *memolist-:MemlList*
+:MemoList               List Memos.
+
+                                                *memolist-:MemoNew*
+:MemoNew                Create a new Memo
+
+==============================================================================
+ABOUT                                           *memolist-about*
+
+Grab the latest version or report a bug on Github:
+
+http://github.com/glidenote/memolist.vim
+
+==============================================================================
+ vim:tw=78:et:ft=help:norl:

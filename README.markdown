@@ -1,6 +1,7 @@
 # memolist.vim
 
-this is a vimscript for create and select memo.
+This is a vimscript for create and manage memo.
+memolist is inspired by [jekyll.vim](https://github.com/csexton/jekyll.vim).
 
 ## Setup
 
@@ -15,14 +16,17 @@ You may also want to add a few mappings to stream line the behavior:
 
 ## options:
 
-    let g:memolist_memo_suffix = "markdown"     # filetype
-    let g:memolist_memo_date = "%Y-%m-%d %H:%M" # date format
-    let g:memolist_prompt_tags = "true"         # tag (default:false)
-    let g:memolist_prompt_categories = "true"   # category (default:false)
+    let g:memolist_memo_suffix = "markdown"
+    let g:memolist_memo_suffix = "txt"
+    let g:memolist_memo_date = "%Y-%m-%d %H:%M"
+    let g:memolist_memo_date = "epoch          
+    let g:memolist_memo_date = "%D %T"
+    let g:memolist_prompt_tags = "true"
+    let g:memolist_prompt_categories = "true"
 
 ## Commands
 
-Create New memo:
+Create New Memo:
 
     :MemoNew
 
