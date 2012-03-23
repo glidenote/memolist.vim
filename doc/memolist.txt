@@ -12,8 +12,10 @@ Install in ~/.vim
 
 Set the path to your Jekyll Blog in your vimrc.
 
+The default direcory path is "~/memo". You can override these if you like. 
+
 Example:
-    let g:memolist_path = "path/to/memo"
+    let g:memolist_path = "path/to/dir"
 
 The default memo suffix is "markdown". You can override these if you like. 
 enable a prompt for memo tags and/or memo categories during create.
