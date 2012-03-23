@@ -4,14 +4,14 @@ this is a vimscript for create and select memo.
 
 ## Setup
 
-Set the path to your memo directory. default directory `~/memo`
+Set the path to your memo directory in your .vimrc.(default directory `~/memo`)
 
     let g:memolist_path = "path/to/dir"
 
 You may also want to add a few mappings to stream line the behavior:
 
-    map <Leader>ml  :MemoList<CR>
     map <Leader>mn  :MemoNew<CR>
+    map <Leader>ml  :MemoList<CR>
 
 ## options:
 
