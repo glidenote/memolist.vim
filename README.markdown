@@ -10,8 +10,8 @@ Set the path to your memo directory. default directory `~/memo`
 
 You may also want to add a few mappings to stream line the behavior:
 
-    map <Leader>ml  :memolistList<CR>
-    map <Leader>mn  :memolistNew<CR>
+    map <Leader>ml  :MemoList<CR>
+    map <Leader>mn  :MemoNew<CR>
 
 ## options:
 
