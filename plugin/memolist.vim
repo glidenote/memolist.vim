@@ -62,6 +62,10 @@ function! s:error(str)
   let v:errmsg = a:str
 endfunction
 
+if !isdirectory(g:memolist_path)                                                                                                                           
+  call mkdir(g:memolist_path, 'p')                                                                                                                         
+endif
+
 "------------------------
 " function
 "------------------------
