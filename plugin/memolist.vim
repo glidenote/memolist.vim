@@ -42,6 +42,10 @@ if !exists('g:memolist_prompt_categories')
   let g:memolist_prompt_categories = ""
 endif
 
+if !exists('g:memolist_qfixgrep')
+  let g:memolist_qfixgrep = ""
+endif
+
 function s:esctitle(str)
   let str = a:str
   let str = tolower(str)
@@ -81,7 +85,12 @@ function MemoGrep(word)
   if word == ''
     let word = input("MemoGrep word: ")
   endif
-  exe "Vimgrep " word . " " . g:memolist_path . "/*"
+  let qfixgrep = g:memolist_qfixgrep
+  if qfixgrep != ''
+    exe "Vimgrep " word . " " . g:memolist_path . "/*"
+  else
+    exe "vimgrep " word . " " . g:memolist_path . "/*"
+  endif
 endfunction
 command! -nargs=? MemoGrep :call MemoGrep(<q-args>)
 

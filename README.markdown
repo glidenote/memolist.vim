@@ -24,6 +24,7 @@ You may also want to add a few mappings to stream line the behavior:
     let g:memolist_memo_date = "%D %T"
     let g:memolist_prompt_tags = "true"
     let g:memolist_prompt_categories = "true"
+    let g:memolist_qfixgrep = "true"
 
 ## Commands
 
@@ -42,10 +43,6 @@ Grep Memo Directory:
 ## Install
 
 Copy it to your pugin directory.
-
-## Requirements
-
- * [fuenor/qfixgrep](https://github.com/fuenor/qfixgrep)
 
 ## License
 
