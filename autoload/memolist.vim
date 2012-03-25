@@ -1,6 +1,6 @@
 " autoload/memolist.vim
-" Author:   Akira Maeda
-
+" Author:  Akira Maeda <glidenote@gmail.com>
+"
 " Install this file as autoload/memolist.vim.  This file is sourced manually by
 " plugin/memolist.vim.  It is in autoload directory to allow for future usage of
 " Vim 7's autoload feature.
@@ -8,6 +8,7 @@
 " Exit quickly when:
 " - this plugin was already loaded (or disabled)
 " - when 'compatible' is set
+
 if &cp || exists("g:autoloaded_memolist")
   finish
 endif

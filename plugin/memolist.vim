@@ -1,5 +1,5 @@
 " memolist.vim  
-" Maintainer:   Akira Maeda
+" Maintainer:  Akira Maeda <glidenote@gmail.com>
 "
 " See doc/memolist.txt for instructions and usage.
 
@@ -7,6 +7,7 @@
 " Exit quickly when:
 " - this plugin was already loaded (or disabled)
 " - when 'compatible' is set
+
 if (exists("g:loaded_memolist") && g:loaded_memolist) || &cp
   finish
 endif
@@ -124,7 +125,7 @@ function MemoNew(title)
     exe "e " . g:memolist_path . "/" . file_name
     
     " memo template
-    let template = ["# title: " . title ]
+    let template = ["title: " . title , "=========="]
     if date != ""
       call add(template, "date: "  . date)
     endif
