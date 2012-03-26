@@ -73,17 +73,6 @@ endif
 "------------------------
 " function
 "------------------------
-function! s:BufInit(path)
-  let b:memolist_root = a:path
-  echomsg b:memolist_root
-  if !exists("g:autoloaded_memolist") && v:version >= 700
-    runtime! autoload/memolist.vim
-  endif
-  " FIXME: This should be handled by the autocmd, but we don't set memolist_root
-  " until after that autocmd is run, so it won't match.
-  syn match Comment /\%^---\_.\{-}---$/ contains=@Spell
-endfunction
-
 function! memolist#list()
   exe "e " . g:memolist_path
 endfunction
