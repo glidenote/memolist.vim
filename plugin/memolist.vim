@@ -91,7 +91,7 @@ function MemoGrep(word)
     let word = input("MemoGrep word: ")
   endif
   let qfixgrep = g:memolist_qfixgrep
-  if qfixgrep != ''
+  if qfixgrep == 'true'
     exe "Vimgrep " word . " " . g:memolist_path . "/*"
   else
     exe "vimgrep " word . " " . g:memolist_path . "/*"
