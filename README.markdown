@@ -1,11 +1,11 @@
 # memolist.vim
 
-This is a vimscript for create and manage memo.
-memolist is inspired by [jekyll.vim](https://github.com/csexton/jekyll.vim).
+This is a vimscript for create and manage memo.  
+memolist.vim is inspired by [jekyll.vim](https://github.com/csexton/jekyll.vim).
 
 ## Setup
 
-Set the path to your memo directory in your .vimrc.(default directory `~/memo`)
+Set the path to your memo directory in your .vimrc.(default directory `$HOME/memo`)
 
     let g:memolist_path = "path/to/dir"
 
