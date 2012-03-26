@@ -1,4 +1,4 @@
-" memolist.vim  
+" memolist.vim
 " Maintainer:  Akira Maeda <glidenote@gmail.com>
 "
 " See doc/memolist.txt for instructions and usage.
@@ -63,8 +63,8 @@ function! s:error(str)
   let v:errmsg = a:str
 endfunction
 
-if !isdirectory(g:memolist_path)                                                                                                                           
-  call mkdir(g:memolist_path, 'p')                                                                                                                         
+if !isdirectory(g:memolist_path)
+  call mkdir(g:memolist_path, 'p')
 endif
 
 "------------------------
@@ -81,7 +81,7 @@ function! s:BufInit(path)
 endfunction
 
 function MemoList()
-  exe "e " . g:memolist_path 
+  exe "e " . g:memolist_path
 endfunction
 command! -nargs=0 MemoList :call MemoList()
 
@@ -105,13 +105,16 @@ function MemoNew(title)
   let categories = g:memolist_prompt_categories
 
   if date == "epoch"
-    let date = localtime() 
+    let date = localtime()
   elseif date != ""
     let date = strftime(date)
   endif
   let title = a:title
   if title == ''
     let title = input("Memo title: ")
+    if title == ''
+      let title = strftime("%Y%m%d%H%M")
+    endif
   endif
   if tags != ""
     let tags = input("Memo tags: ")
@@ -119,28 +122,24 @@ function MemoNew(title)
   if categories != ""
     let categories = input("Memo categories: ")
   endif
-  if title != ''
-    let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
-    echo "Making that memo " . file_name
-    exe "e " . g:memolist_path . "/" . file_name
-    
-    " memo template
-    let template = ["title: " . title , "=========="]
-    if date != ""
-      call add(template, "date: "  . date)
-    endif
-    if tags != ""
-      call add(template, "tags: [" . tags . "]")
-    endif
-    if categories != ""
-      call add(template, "categories: [" . categories . "]")
-    endif
-    call extend(template,["- - -"])
+  let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
+  echo "Making that memo " . file_name
+  exe "e " . g:memolist_path . "/" . file_name
 
-    let err = append(0, template)
-  else
-    call s:error("You must specify a title")
+  " memo template
+  let template = ["title: " . title , "=========="]
+  if date != ""
+    call add(template, "date: "  . date)
   endif
+  if tags != ""
+    call add(template, "tags: [" . tags . "]")
+  endif
+  if categories != ""
+    call add(template, "categories: [" . categories . "]")
+  endif
+  call extend(template,["- - -"])
+
+  let err = append(0, template)
 endfunction
 command! -nargs=? MemoNew :call MemoNew(<q-args>)
 
