@@ -16,6 +16,10 @@ let g:loaded_memolist = 1
 let s:cpo_save = &cpo
 set cpo&vim
 
+if !exists('g:memolist_path')
+  let g:memolist_path = $HOME . "/memo"
+endif
+
 command! -nargs=0 MemoList :call memolist#list()
 command! -nargs=? MemoGrep :call memolist#grep(<q-args>)
 command! -nargs=? MemoNew :call memolist#new(<q-args>)
