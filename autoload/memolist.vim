@@ -29,10 +29,6 @@ endfunction
 "------------------------
 " setting
 "------------------------
-if !exists('g:memolist_path')
-  let g:memolist_path = $HOME . "/memo"
-endif
-
 if !exists('g:memolist_memo_suffix')
   let g:memolist_memo_suffix = "markdown"
 endif
