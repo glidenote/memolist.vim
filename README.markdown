@@ -25,6 +25,7 @@ You may also want to add a few mappings to stream line the behavior:
     let g:memolist_prompt_tags = "true"
     let g:memolist_prompt_categories = "true"
     let g:memolist_qfixgrep = "true"
+    let g:memolist_vimfiler = "true"
 
 ## Commands
 
