@@ -113,6 +113,7 @@ function! memolist#new(title)
     let title = strftime("%Y%m%d%H%M")
     let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
   endif
+
     echo "Making that memo " . file_name
     exe "e " . g:memolist_path . "/" . file_name
 
