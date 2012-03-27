@@ -1,6 +1,6 @@
 " autoload/memolist.vim
 " Author:  Akira Maeda <glidenote@gmail.com>
-" Version: 0.0.3
+" Version: 0.0.4
 " Install this file as autoload/memolist.vim.  This file is sourced manually by
 " plugin/memolist.vim.  It is in autoload directory to allow for future usage of
 " Vim 7's autoload feature.
