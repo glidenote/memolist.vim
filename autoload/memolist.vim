@@ -106,8 +106,13 @@ function! memolist#new(title)
   if categories != ""
     let categories = input("Memo categories: ")
   endif
+
   if title != ''
     let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
+  else
+    let title = strftime("%Y%m%d%H%M")
+    let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
+  endif
     echo "Making that memo " . file_name
     exe "e " . g:memolist_path . "/" . file_name
 
@@ -125,9 +130,7 @@ function! memolist#new(title)
     call extend(template,["- - -"])
 
     let err = append(0, template)
-  else
-    call s:error("You must specify a title")
-  endif
+
 endfunction
 
 let &cpo = s:cpo_save
