@@ -53,6 +53,10 @@ if !exists('g:memolist_qfixgrep')
   let g:memolist_qfixgrep = ""
 endif
 
+if !exists('g:memolist_vimfiler')
+  let g:memolist_vimfiler = ""
+endif
+
 function! s:esctitle(str)
   let str = a:str
   let str = tolower(str)
@@ -70,7 +74,12 @@ endif
 " function
 "------------------------
 function! memolist#list()
-  exe "e " . g:memolist_path
+  let vimfiler = g:memolist_vimfiler
+  if vimfiler == 'true'
+    exe "VimFiler " . g:memolist_path
+  else
+    exe "e " . g:memolist_path
+  endif
 endfunction
 
 function! memolist#grep(word)
