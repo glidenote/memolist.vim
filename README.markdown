@@ -5,7 +5,7 @@ memolist.vim is inspired by [jekyll.vim](https://github.com/csexton/jekyll.vim).
 
 ## Setup
 
-Set the path to your memo directory in your .vimrc.(default directory `$HOME/memo`)
+Set the full path to your memo directory in your .vimrc.(default directory `$HOME/memo`)
 
     let g:memolist_path = "path/to/dir"
 
@@ -42,7 +42,7 @@ Grep Memo Directory:
 
 ## Install
 
-Copy it to your pugin directory.
+Copy it to your plugin and autoload directory.
 
 ## License
 
