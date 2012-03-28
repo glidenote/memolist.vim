@@ -66,6 +66,7 @@ function! s:esctitle(str)
   return str
 endfunction
 
+let g:memolist_path = expand(g:memolist_path, 'p:')
 if !isdirectory(g:memolist_path)
   call mkdir(g:memolist_path, 'p')
 endif
