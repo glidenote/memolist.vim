@@ -98,6 +98,10 @@ function! memolist#grep(word)
   endif
 endfunction
 
+function! memolist#_complete_ymdhms(...)
+  return [strftime("%Y%m%d%H%M")]
+endfunction
+
 function! memolist#new(title)
   let date = g:memolist_memo_date
   let tags = g:memolist_prompt_tags
@@ -110,7 +114,7 @@ function! memolist#new(title)
   endif
   let title = a:title
   if title == ''
-    let title = input("Memo title: ")
+    let title = input("Memo title: ", "", "customlist,memolist#_complete_ymdhms")
   endif
   if title == ''
     return
@@ -122,30 +126,25 @@ function! memolist#new(title)
     let categories = input("Memo categories: ")
   endif
 
-  if title != ''
-    let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
-  else
-    let title = strftime("%Y%m%d%H%M")
-    let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
+  let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
+
+  echo "Making that memo " . file_name
+  exe "e " . g:memolist_path . "/" . file_name
+
+  " memo template
+  let template = ["title: " . title , "=========="]
+  if date != ""
+    call add(template, "date: "  . date)
   endif
+  if tags != ""
+    call add(template, "tags: [" . tags . "]")
+  endif
+  if categories != ""
+    call add(template, "categories: [" . categories . "]")
+  endif
+  call extend(template,["- - -"])
 
-    echo "Making that memo " . file_name
-    exe "e " . g:memolist_path . "/" . file_name
-
-    " memo template
-    let template = ["title: " . title , "=========="]
-    if date != ""
-      call add(template, "date: "  . date)
-    endif
-    if tags != ""
-      call add(template, "tags: [" . tags . "]")
-    endif
-    if categories != ""
-      call add(template, "categories: [" . categories . "]")
-    endif
-    call extend(template,["- - -"])
-
-    let err = append(0, template)
+  let err = append(0, template)
 
 endfunction
 
