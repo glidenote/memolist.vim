@@ -87,6 +87,9 @@ function! memolist#grep(word)
   if word == ''
     let word = input("MemoGrep word: ")
   endif
+  if word == ''
+    return
+  endif
   let qfixgrep = g:memolist_qfixgrep
   if qfixgrep == 'true'
     exe "Vimgrep " word . " " . g:memolist_path . "/*"
@@ -108,6 +111,9 @@ function! memolist#new(title)
   let title = a:title
   if title == ''
     let title = input("Memo title: ")
+  endif
+  if title == ''
+    return
   endif
   if tags != ""
     let tags = input("Memo tags: ")
