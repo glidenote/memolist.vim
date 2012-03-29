@@ -1,6 +1,6 @@
 " autoload/memolist.vim
 " Author:  Akira Maeda <glidenote@gmail.com>
-" Version: 0.0.4
+" Version: 0.0.5
 " Install this file as autoload/memolist.vim.  This file is sourced manually by
 " plugin/memolist.vim.  It is in autoload directory to allow for future usage of
 " Vim 7's autoload feature.
@@ -55,6 +55,10 @@ endif
 
 if !exists('g:memolist_vimfiler')
   let g:memolist_vimfiler = ""
+endif
+
+if !exists('g:memolist_template_path')
+  let g:memolist_template_path = ""
 endif
 
 function! s:esctitle(str)
@@ -141,20 +145,58 @@ function! memolist#new(title)
   exe (&l:modified ? "sp" : "e") s:escarg(g:memolist_path . "/" . file_name)
 
   " memo template
-  let template = ["title: " . title , "=========="]
-  if date != ""
-    call add(template, "date: "  . date)
+  if g:memolist_template_path == ""
+    let template = s:default_template(title, date, tags, categories)
+  else
+    let path = expand(g:memolist_template_path, ":p")
+    let path = path . "/" . g:memolist_memo_suffix . ".txt"
+    if filereadable(path)
+      let template = []
+      let lines = readfile(path, 'b')
+      for line in lines
+        if line =~ "{{_title_}}"
+          call add(template, substitute(line, "{{_title_}}", title, ""))
+        elseif line =~ "{{_date_}}"
+          if date == ""
+            continue
+          endif
+          call add(template, substitute(line, "{{_date_}}", date, ""))
+        elseif line =~ "{{_tags_}}"
+          if tags == ""
+            continue
+          endif
+          call add(template, substitute(line, "{{_tags_}}", tags, ""))
+        elseif line =~ "{{_categories_}}"
+          if categories == ""
+            continue
+          endif
+          call add(template, substitute(line, "{{_categories_}}", categories, ""))
+        else
+          call add(template, line)
+        endif
+      endfor
+    else
+      let template = s:default_template(title, date, tags, categories)
+    endif
   endif
-  if tags != ""
+  let err = append(0, template)
+
+endfunction
+
+function! s:default_template(title, date, tags, categories)
+  let template = ["title: " . a:title , "=========="]
+  if a:date != ""
+    call add(template, "date: "  . a:date)
+  endif
+  if a:tags != ""
     call add(template, "tags: [" . tags . "]")
   endif
-  if categories != ""
-    call add(template, "categories: [" . categories . "]")
+  if a:categories != ""
+    call add(template, "categories: [" . a:categories . "]")
   endif
   call extend(template,["- - -"])
 
-  let err = append(0, template)
-
+  return template
 endfunction
 
 let &cpo = s:cpo_save
