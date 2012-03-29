@@ -96,11 +96,15 @@ function! memolist#grep(word)
     return
   endif
   let qfixgrep = g:memolist_qfixgrep
-  if qfixgrep == 'true'
-    exe "Vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
-  else
-    exe "vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
-  endif
+  try
+    if qfixgrep == 'true'
+      exe "Vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
+    else
+      exe "vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
+    endif
+  catch
+    redraw | echohl ErrorMsg | echo v:exception | echohl None
+  endtry
 endfunction
 
 function! memolist#_complete_ymdhms(...)
