@@ -66,6 +66,10 @@ function! s:esctitle(str)
   return str
 endfunction
 
+function! s:escarg(s)
+  return escape(a:s, ' ')
+endfunction
+
 let g:memolist_path = expand(g:memolist_path, ':p')
 if !isdirectory(g:memolist_path)
   call mkdir(g:memolist_path, 'p')
@@ -77,9 +81,9 @@ endif
 function! memolist#list()
   let vimfiler = g:memolist_vimfiler
   if vimfiler == 'true'
-    exe "VimFiler " . g:memolist_path
+    exe "VimFiler" s:escarg(g:memolist_path)
   else
-    exe "e " . g:memolist_path
+    exe "e" s:escarg(g:memolist_path)
   endif
 endfunction
 
@@ -93,9 +97,9 @@ function! memolist#grep(word)
   endif
   let qfixgrep = g:memolist_qfixgrep
   if qfixgrep == 'true'
-    exe "Vimgrep " word . " " . g:memolist_path . "/*"
+    exe "Vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
   else
-    exe "vimgrep " word . " " . g:memolist_path . "/*"
+    exe "vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
   endif
 endfunction
 
@@ -130,7 +134,7 @@ function! memolist#new(title)
   let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
 
   echo "Making that memo " . file_name
-  exe "e " . g:memolist_path . "/" . file_name
+  exe "e" s:escarg(g:memolist_path . "/" . file_name)
 
   " memo template
   let template = ["title: " . title , "=========="]
