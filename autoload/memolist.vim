@@ -96,11 +96,15 @@ function! memolist#grep(word)
     return
   endif
   let qfixgrep = g:memolist_qfixgrep
-  if qfixgrep == 'true'
-    exe "Vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
-  else
-    exe "vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
-  endif
+  try
+    if qfixgrep == 'true'
+      exe "Vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
+    else
+      exe "vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
+    endif
+  catch
+    redraw | echohl ErrorMsg | echo v:exception | echohl None
+  endtry
 endfunction
 
 function! memolist#_complete_ymdhms(...)
@@ -134,7 +138,7 @@ function! memolist#new(title)
   let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
 
   echo "Making that memo " . file_name
-  exe "e" s:escarg(g:memolist_path . "/" . file_name)
+  exe (&l:modified ? "sp" : "e") s:escarg(g:memolist_path . "/" . file_name)
 
   " memo template
   let template = ["title: " . title , "=========="]
