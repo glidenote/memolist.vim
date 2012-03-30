@@ -29,7 +29,7 @@ Example: >
     let g:memolist_prompt_categories = 1
     let g:memolist_qfixgrep = 1
     let g:memolist_vimfiler = 1
-    let g:memolist_template_path = "path/to/template"
+    let g:memolist_template_dir_path = "path/to/dir"
 <
 You may also want to add a few mappings to stream line the behavior: >
     map <Leader>mn  :MemoNew<CR>
@@ -61,18 +61,18 @@ COMMANDS                                        *memolist-commands*
 ==============================================================================
 TEMPLATE *memolist-template*
 
-If you want to change default template, set template file path.
+If you want to change default template, set template directory path.
 
 Example:
 >
-    let g:memolist_template_path = "~/.vim/template/memolist"
+    let g:memolist_template_dir_path = "~/.vim/template/memolist"
 <
 
 Note:
     Template file's naming rule is memolist_memo_suffix + '.txt'
 >
     let g:memolist_memo_suffix = "markdown"
-    let g:memolist_template_path = "~/.vim/template/memolist"
+    let g:memolist_template_dir_path = "~/.vim/template/memolist"
 <
     Template file should put into ~/.vim/template/memolist/markdown.txt
 

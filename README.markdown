@@ -15,7 +15,7 @@ You may also want to add a few mappings to stream line the behavior:
     map <Leader>ml  :MemoList<CR>
     map <Leader>mg  :MemoGrep<CR>
 
-## options:
+## Options
 
     let g:memolist_memo_suffix = "markdown"
     let g:memolist_memo_suffix = "txt"
@@ -26,7 +26,7 @@ You may also want to add a few mappings to stream line the behavior:
     let g:memolist_prompt_categories = 1
     let g:memolist_qfixgrep = 1
     let g:memolist_vimfiler = 1
-    let g:memolist_template_path = "path/to/template"
+    let g:memolist_template_dir_path = "path/to/dir"
 
 ## Commands
 

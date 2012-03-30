@@ -41,8 +41,8 @@ if !exists('g:memolist_title_pattern')
   let g:memolist_title_pattern = "[ '\"]"
 endif
 
-if !exists('g:memolist_template_path')
-  let g:memolist_template_path = ""
+if !exists('g:memolist_template_dir_path')
+  let g:memolist_template_dir_path = ""
 endif
 
 function! s:esctitle(str)
@@ -131,8 +131,8 @@ function! memolist#new(title)
 
   " memo template
   let template = s:default_template
-  if g:memolist_template_path != ""
-    let path = expand(g:memolist_template_path, ":p")
+  if g:memolist_template_dir_path != ""
+    let path = expand(g:memolist_template_dir_path, ":p")
     let path = path . "/" . g:memolist_memo_suffix . ".txt"
     if filereadable(path)
       let template = readfile(path, 'b')
