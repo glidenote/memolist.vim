@@ -1,6 +1,6 @@
 " autoload/memolist.vim
 " Author:  Akira Maeda <glidenote@gmail.com>
-" Version: 0.0.4
+" Version: 0.0.5
 " Install this file as autoload/memolist.vim.  This file is sourced manually by
 " plugin/memolist.vim.  It is in autoload directory to allow for future usage of
 " Vim 7's autoload feature.
@@ -41,20 +41,8 @@ if !exists('g:memolist_title_pattern')
   let g:memolist_title_pattern = "[ '\"]"
 endif
 
-if !exists('g:memolist_prompt_tags')
-  let g:memolist_prompt_tags = ""
-endif
-
-if !exists('g:memolist_prompt_categories')
-  let g:memolist_prompt_categories = ""
-endif
-
-if !exists('g:memolist_qfixgrep')
-  let g:memolist_qfixgrep = ""
-endif
-
-if !exists('g:memolist_vimfiler')
-  let g:memolist_vimfiler = ""
+if !exists('g:memolist_template_path')
+  let g:memolist_template_path = ""
 endif
 
 function! s:esctitle(str)
@@ -79,8 +67,7 @@ endif
 " function
 "------------------------
 function! memolist#list()
-  let vimfiler = g:memolist_vimfiler
-  if vimfiler == 'true'
+  if get(g:, 'memolist_vimfiler', 0) != 0
     exe "VimFiler" s:escarg(g:memolist_path)
   else
     exe "e" s:escarg(g:memolist_path)
@@ -95,9 +82,9 @@ function! memolist#grep(word)
   if word == ''
     return
   endif
-  let qfixgrep = g:memolist_qfixgrep
+
   try
-    if qfixgrep == 'true'
+    if get(g:, 'memolist_qfixgrep', 0) != 0
       exe "Vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
     else
       exe "vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
@@ -112,49 +99,65 @@ function! memolist#_complete_ymdhms(...)
 endfunction
 
 function! memolist#new(title)
-  let date = g:memolist_memo_date
-  let tags = g:memolist_prompt_tags
-  let categories = g:memolist_prompt_categories
+  let items = {
+  \ 'title': a:title,
+  \ 'date':  localtime(),
+  \ 'tags':  [],
+  \ 'categories':  [],
+  \}
 
-  if date == "epoch"
-    let date = localtime()
-  elseif date != ""
-    let date = strftime(date)
+  if g:memolist_memo_date != 'epoch'
+    let items['date'] = strftime(g:memolist_memo_date)
   endif
-  let title = a:title
-  if title == ''
-    let title = input("Memo title: ", "", "customlist,memolist#_complete_ymdhms")
+  if items['title'] == ''
+    let items['title']= input("Memo title: ", "", "customlist,memolist#_complete_ymdhms")
   endif
-  if title == ''
+  if items['title'] == ''
     return
   endif
-  if tags != ""
-    let tags = input("Memo tags: ")
-  endif
-  if categories != ""
-    let categories = input("Memo categories: ")
+
+  if get(g:, 'memolist_prompt_tags', 0) != 0
+    let items['tags'] = join(split(input("Memo tags: "), '\s'), ' ')
   endif
 
-  let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:memolist_memo_suffix
+  if get(g:, 'memolist_prompt_categories', 0) != 0
+    let items['categories'] = join(split(input("Memo categories: "), '\s'), ' ')
+  endif
+
+  let file_name = strftime("%Y-%m-%d-") . s:esctitle(items['title']) . "." . g:memolist_memo_suffix
 
   echo "Making that memo " . file_name
   exe (&l:modified ? "sp" : "e") s:escarg(g:memolist_path . "/" . file_name)
 
   " memo template
-  let template = ["title: " . title , "=========="]
-  if date != ""
-    call add(template, "date: "  . date)
+  let template = s:default_template
+  if g:memolist_template_path != ""
+    let path = expand(g:memolist_template_path, ":p")
+    let path = path . "/" . g:memolist_memo_suffix . ".txt"
+    if filereadable(path)
+      let template = readfile(path, 'b')
+    endif
   endif
-  if tags != ""
-    call add(template, "tags: [" . tags . "]")
-  endif
-  if categories != ""
-    call add(template, "categories: [" . categories . "]")
-  endif
-  call extend(template,["- - -"])
+  " apply template
+  let err = append(0, s:apply_template(template, items))
 
-  let err = append(0, template)
+endfunction
 
+let s:default_template = [
+\ 'title: {{_title_}}',
+\ '==========',
+\ 'date: {{_date_}}',
+\ 'tags: [{{_tags_}}]',
+\ 'categories: [{{_categories_}}]',
+\ '- - -',
+\]
+
+function! s:apply_template(template, items)
+  let mx = '{{_\(\w\+\)_}}'
+  return map(copy(a:template), "
+  \  substitute(v:val, mx,
+  \   '\\=has_key(a:items, submatch(1)) ? a:items[submatch(1)] : submatch(0)', 'g')
+  \")
 endfunction
 
 let &cpo = s:cpo_save

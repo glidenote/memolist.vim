@@ -1,4 +1,4 @@
-*memolist.txt* 
+*memolist.txt*
 
 Author: Akira Maeda                             *memolist-author*
 License: Same terms as Vim itself (see |license|)
@@ -12,40 +12,120 @@ Install in ~/.vim
 
 Set the path to your Jekyll Blog in your vimrc.
 
-The default directory path is "~/memo". You can override these if you like. 
+The default directory path is "~/memo". You can override these if you like.
 
-Example:
+Example: >
     let g:memolist_path = "path/to/dir"
-
-The default memo suffix is "markdown". You can override these if you like. 
+<
+The default memo suffix is "markdown". You can override these if you like.
 enable a prompt for memo tags and/or memo categories during create.
 
-Example:
+Example: >
     let g:memolist_memo_suffix = "txt"
     let g:memolist_memo_date = "%Y-%m-%d %H:%M"
     let g:memolist_memo_date = "epoch"
     let g:memolist_memo_date = "%D %T"
-    let g:memolist_prompt_tags = "true"
-    let g:memolist_prompt_categories = "true"
-    let g:memolist_qfixgrep = "true"
-    let g:memolist_vimfiler = "true"
-
-
-You may also want to add a few mappings to stream line the behavior:
+    let g:memolist_prompt_tags = 1
+    let g:memolist_prompt_categories = 1
+    let g:memolist_qfixgrep = 1
+    let g:memolist_vimfiler = 1
+    let g:memolist_template_path = "path/to/template"
+<
+You may also want to add a few mappings to stream line the behavior: >
     map <Leader>mn  :MemoNew<CR>
     map <Leader>ml  :MemoList<CR>
-
+<
 ==============================================================================
 COMMANDS                                        *memolist-commands*
 
                                                 *memolist-:MemlList*
 :MemoList               List Memos.
+    Show up memo file list in new buffer.
 
                                                 *memolist-:MemoNew*
 :MemoNew                Create a new Memo
-
+    You'll be asked like following: >
+        Memo title:
+<
+    Use CTRL-C to cancel. If you want to fill tags/categories: >
+        let g:memolist_prompt_tags = 1
+        let g:memolist_prompt_categories = 1
+<
                                                 *memolist-:MemoGrep*
 :MemoGrep               Grep Memo Directory
+
+    You'll be asked to search the keyword like following: >
+        MemoGrep:
+<
+
+==============================================================================
+TEMPLATE *memolist-template*
+
+If you want to change default template, set template file path.
+
+Example:
+>
+    let g:memolist_template_path = "~/.vim/template/memolist"
+<
+
+Note:
+    Template file's naming rule is memolist_memo_suffix + '.txt'
+>
+    let g:memolist_memo_suffix = "markdown"
+    let g:memolist_template_path = "~/.vim/template/memolist"
+<
+    Template file should put into ~/.vim/template/memolist/markdown.txt
+
+
+Template variables:
+    |{{_title_}}| Title which you input.
+    |{{_date_}}| Datetime when memo file created.
+    |{{_tags_}}| Tags which you input.
+    |{{_categories_}}| Categories which you input.
+
+Example:
+>
+    title: {{_title_}}
+    ==========
+    date: {{_date_}}
+    tags: [{{_tags_}}]
+    categories: [{{_categories_}}]
+    ----------
+<
+    If you input like following.
+>
+    title: Sample memo
+    tags: foo
+    categories: bar, baz
+<
+    Memo file would be like following.
+>
+    title: Sample memo
+    ==========
+    date: 2012-03-29 22:16
+    tags: [foo]
+    categories: [bar, baz]
+    ----------
+
+<
+
+Note:
+    If you did not set tags or categories in your .vimrc {{_tags_}} and/or
+    {{_categories_}} would be ignored.
+
+Example:
+    If you input like following.
+>
+    title: Sample memo
+<
+    Memo file would be like following.
+>
+    title: Sample memo
+    ==========
+    date: 2012-03-29 22:16
+    ----------
+
+<
 
 ==============================================================================
 ABOUT                                           *memolist-about*
