@@ -22,10 +22,11 @@ You may also want to add a few mappings to stream line the behavior:
     let g:memolist_memo_date = "%Y-%m-%d %H:%M"
     let g:memolist_memo_date = "epoch"
     let g:memolist_memo_date = "%D %T"
-    let g:memolist_prompt_tags = "true"
-    let g:memolist_prompt_categories = "true"
-    let g:memolist_qfixgrep = "true"
-    let g:memolist_vimfiler = "true"
+    let g:memolist_prompt_tags = 1
+    let g:memolist_prompt_categories = 1
+    let g:memolist_qfixgrep = 1
+    let g:memolist_vimfiler = 1
+    let g:memolist_template_path = "path/to/template"
 
 ## Commands
 
