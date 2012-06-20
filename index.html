@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Memolist.vim by glidenote</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Memolist.vim</h1>
+        <h2>memolist.vim</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/glidenote/memolist.vim/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/glidenote/memolist.vim/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/glidenote/memolist.vim" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>memolist.vim</h1>
+
+<p>This is a vimscript for create and manage memo.<br>
+memolist.vim is inspired by <a href="https://github.com/csexton/jekyll.vim">jekyll.vim</a>.</p>
+
+<h2>Setup</h2>
+
+<p>Set the path to your memo directory in your .vimrc.(default directory <code>$HOME/memo</code>)</p>
+
+<pre><code>let g:memolist_path = "path/to/dir"
+</code></pre>
+
+<p>You may also want to add a few mappings to stream line the behavior:</p>
+
+<pre><code>map &lt;Leader&gt;mn  :MemoNew&lt;CR&gt;
+map &lt;Leader&gt;ml  :MemoList&lt;CR&gt;
+map &lt;Leader&gt;mg  :MemoGrep&lt;CR&gt;
+</code></pre>
+
+<h2>Options</h2>
+
+<pre><code>let g:memolist_memo_suffix = "markdown"
+let g:memolist_memo_suffix = "txt"
+let g:memolist_memo_date = "%Y-%m-%d %H:%M"
+let g:memolist_memo_date = "epoch"
+let g:memolist_memo_date = "%D %T"
+let g:memolist_prompt_tags = 1
+let g:memolist_prompt_categories = 1
+let g:memolist_qfixgrep = 1
+let g:memolist_vimfiler = 1
+let g:memolist_template_dir_path = "path/to/dir"
+</code></pre>
+
+<h2>Commands</h2>
+
+<p>Create New Memo:</p>
+
+<pre><code>:MemoNew
+</code></pre>
+
+<p>Show Memo List:</p>
+
+<pre><code>:MemoList
+</code></pre>
+
+<p>Grep Memo Directory:</p>
+
+<pre><code>:MemoGrep
+</code></pre>
+
+<h2>Install</h2>
+
+<p>Copy it to your plugin and autoload directory.</p>
+
+<h2>License</h2>
+
+<p>Lcense: Same terms as Vim itself (see <a href="http://vimdoc.sourceforge.net/htmldoc/uganda.html#license">license</a>)</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
