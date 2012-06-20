@@ -135,7 +135,7 @@ function! memolist#new(title)
     let path = expand(g:memolist_template_dir_path, ":p")
     let path = path . "/" . g:memolist_memo_suffix . ".txt"
     if filereadable(path)
-      let template = readfile(path, 'b')
+      let template = readfile(path)
     endif
   endif
   " apply template
