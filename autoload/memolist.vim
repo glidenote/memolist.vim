@@ -38,7 +38,7 @@ if !exists('g:memolist_memo_date')
 endif
 
 if !exists('g:memolist_title_pattern')
-  let g:memolist_title_pattern = "[ '\"]"
+  let g:memolist_title_pattern = "[ /\\'\"]"
 endif
 
 if !exists('g:memolist_template_dir_path')
