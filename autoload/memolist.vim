@@ -85,7 +85,7 @@ function! memolist#grep(word)
 
   try
     if get(g:, 'memolist_qfixgrep', 0) != 0
-      exe "Vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
+      exe "Vimgrep -r" s:escarg(word) s:escarg(g:memolist_path . "/*")
     else
       exe "vimgrep" s:escarg(word) s:escarg(g:memolist_path . "/*")
     endif
