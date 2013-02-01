@@ -15,19 +15,6 @@ You may also want to add a few mappings to stream line the behavior:
     map <Leader>ml  :MemoList<CR>
     map <Leader>mg  :MemoGrep<CR>
 
-## Options
-
-    let g:memolist_memo_suffix = "markdown"
-    let g:memolist_memo_suffix = "txt"
-    let g:memolist_memo_date = "%Y-%m-%d %H:%M"
-    let g:memolist_memo_date = "epoch"
-    let g:memolist_memo_date = "%D %T"
-    let g:memolist_prompt_tags = 1
-    let g:memolist_prompt_categories = 1
-    let g:memolist_qfixgrep = 1
-    let g:memolist_vimfiler = 1
-    let g:memolist_template_dir_path = "path/to/dir"
-
 ## Commands
 
 Create New Memo:
@@ -41,6 +28,27 @@ Show Memo List:
 Grep Memo Directory:
 
     :MemoGrep
+
+## Options
+
+    let g:memolist_memo_suffix = "markdown"
+    let g:memolist_memo_suffix = "txt"
+    let g:memolist_memo_date = "%Y-%m-%d %H:%M"
+    let g:memolist_memo_date = "epoch"
+    let g:memolist_memo_date = "%D %T"
+    let g:memolist_prompt_tags = 1
+    let g:memolist_prompt_categories = 1
+    let g:memolist_qfixgrep = 1
+    let g:memolist_vimfiler = 1
+
+you can use other format and custom template.
+(default memo format is `markdown`.)
+
+if you use custom template file(`~/memotemplates/rdoc.txt`).  
+add the following lines to your `.vimrc`
+
+    let g:memolist_memo_suffix = "rdoc"
+    let g:memolist_template_dir_path = "~/memotemplates`
 
 ## Install
 
