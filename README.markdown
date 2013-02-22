@@ -11,9 +11,9 @@ Set the path to your memo directory in your .vimrc.(default directory `$HOME/mem
 
 You may also want to add a few mappings to stream line the behavior:
 
-    map <Leader>mn  :MemoNew<CR>
-    map <Leader>ml  :MemoList<CR>
-    map <Leader>mg  :MemoGrep<CR>
+    nnoremap <Leader>mn  :MemoNew<CR>
+    nnoremap <Leader>ml  :MemoList<CR>
+    nnoremap <Leader>mg  :MemoGrep<CR>
 
 ## Commands
 
