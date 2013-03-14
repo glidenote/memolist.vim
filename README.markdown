@@ -48,7 +48,7 @@ if you use custom template file(`~/memotemplates/rdoc.txt`).
 add the following lines to your `.vimrc`
 
     let g:memolist_memo_suffix = "rdoc"
-    let g:memolist_template_dir_path = "~/memotemplates`
+    let g:memolist_template_dir_path = "~/memotemplates"
 
 ## Install
 
