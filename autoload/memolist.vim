@@ -124,7 +124,10 @@ function! memolist#new(title)
     let items['categories'] = join(split(input("Memo categories: "), '\s'), ' ')
   endif
 
-  let file_name = strftime("%Y-%m-%d-") . s:esctitle(items['title']) . "." . g:memolist_memo_suffix
+  let file_name = strftime("%Y-%m-%d-") . s:esctitle(items['title'])
+  if stridx(items['title'], '.') == -1
+    let file_name = file_name . "." . g:memolist_memo_suffix
+  endif
 
   echo "Making that memo " . file_name
   exe (&l:modified ? "sp" : "e") s:escarg(g:memolist_path . "/" . file_name)
