@@ -124,7 +124,11 @@ function! memolist#new(title)
     let items['categories'] = join(split(input("Memo categories: "), '\s'), ' ')
   endif
 
-  let file_name = strftime("%Y-%m-%d-") . s:esctitle(items['title'])
+  if get(g:, 'memolist_filename_prefix_none', 0) != 0
+    let file_name = s:esctitle(items['title'])
+  else
+    let file_name = strftime("%Y-%m-%d-") . s:esctitle(items['title'])
+  endif
   if stridx(items['title'], '.') == -1
     let file_name = file_name . "." . g:memolist_memo_suffix
   endif

@@ -31,15 +31,29 @@ Grep Memo Directory:
 
 ## Options
 
+    " suffix type (default markdown)
     let g:memolist_memo_suffix = "markdown"
     let g:memolist_memo_suffix = "txt"
+
+    " date format (default %Y-%m-%d %H:%M)
     let g:memolist_memo_date = "%Y-%m-%d %H:%M"
     let g:memolist_memo_date = "epoch"
     let g:memolist_memo_date = "%D %T"
+
+    " tags prompt (default 0)
     let g:memolist_prompt_tags = 1
+
+    " categories prompt (default 0)
     let g:memolist_prompt_categories = 1
+
+    " use qfixgrep (default 0)
     let g:memolist_qfixgrep = 1
+
+    " use vimfler (default 0)
     let g:memolist_vimfiler = 1
+
+    " remove filename prefix (default 0)
+    let g:memolist_filename_prefix_none = 1
 
 you can use other format and custom template.
 (default memo format is `markdown`.)
