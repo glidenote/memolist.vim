@@ -41,6 +41,9 @@ Example: >
     " use vimfler (default 0)
     let g:memolist_vimfiler = 1
 
+    " use arbitrary vimfler option (default -split -winwidth=50)
+    let g:memolist_vimfiler_option = "-split -winwidth=50 -simple"
+
     " use template
     let g:memolist_template_dir_path = "path/to/dir"
 

@@ -45,6 +45,10 @@ if !exists('g:memolist_template_dir_path')
   let g:memolist_template_dir_path = ""
 endif
 
+if !exists('g:memolist_vimfiler_option')
+  let g:memolist_vimfiler_option = "-split -winwidth=50"
+endif
+
 function! s:esctitle(str)
   let str = a:str
   let str = tolower(str)
@@ -68,7 +72,7 @@ endif
 "------------------------
 function! memolist#list()
   if get(g:, 'memolist_vimfiler', 0) != 0
-    exe "VimFiler" s:escarg(g:memolist_path)
+    exe "VimFiler" g:memolist_vimfiler_option s:escarg(g:memolist_path)
   else
     exe "e" s:escarg(g:memolist_path)
   endif
