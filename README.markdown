@@ -31,6 +31,7 @@ Grep Memo Directory:
 
 ## Options
 
+```vim
     " suffix type (default markdown)
     let g:memolist_memo_suffix = "markdown"
     let g:memolist_memo_suffix = "txt"
@@ -52,8 +53,12 @@ Grep Memo Directory:
     " use vimfler (default 0)
     let g:memolist_vimfiler = 1
 
+    " use unite (default 0)
+    let g:memolist_unite = 1
+
     " remove filename prefix (default 0)
     let g:memolist_filename_prefix_none = 1
+```
 
 you can use other format and custom template.
 (default memo format is `markdown`.)
