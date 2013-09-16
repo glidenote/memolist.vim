@@ -44,6 +44,15 @@ Example: >
     " use arbitrary vimfler option (default -split -winwidth=50)
     let g:memolist_vimfiler_option = "-split -winwidth=50 -simple"
 
+    " use unite (default 0)
+    let g:memolist_unite = 1
+
+    " use arbitrary unite option (default is empty)
+    let g:memolist_unite_option = "-auto-preview"
+
+    " use arbitrary unite source (default is 'file')
+    let g:memolist_unite_source = "file_rec"
+
     " use template
     let g:memolist_template_dir_path = "path/to/dir"
 
