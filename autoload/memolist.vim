@@ -49,6 +49,14 @@ if !exists('g:memolist_vimfiler_option')
   let g:memolist_vimfiler_option = "-split -winwidth=50"
 endif
 
+if !exists('g:memolist_unite_source')
+  let g:memolist_unite_source = "file"
+endif
+
+if !exists('g:memolist_unite_option')
+  let g:memolist_unite_option = ""
+endif
+
 function! s:esctitle(str)
   let str = a:str
   let str = tolower(str)
@@ -73,6 +81,8 @@ endif
 function! memolist#list()
   if get(g:, 'memolist_vimfiler', 0) != 0
     exe "VimFiler" g:memolist_vimfiler_option s:escarg(g:memolist_path)
+  elseif get(g:, 'memolist_unite', 0) != 0
+    exe "Unite" g:memolist_unite_source.':'.s:escarg(g:memolist_path) g:memolist_unite_option
   else
     exe "e" s:escarg(g:memolist_path)
   endif
