@@ -48,7 +48,7 @@ Example: >
     let g:memolist_unite = 1
 
     " use arbitrary unite option (default is empty)
-    let g:memolist_unite_option = "-auto-preview"
+    let g:memolist_unite_option = "-auto-preview -start-insert"
 
     " use arbitrary unite source (default is 'file')
     let g:memolist_unite_source = "file_rec"

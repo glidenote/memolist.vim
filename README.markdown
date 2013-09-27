@@ -53,11 +53,17 @@ Grep Memo Directory:
     " use vimfler (default 0)
     let g:memolist_vimfiler = 1
 
+    " remove filename prefix (default 0)
+    let g:memolist_filename_prefix_none = 1
+
     " use unite (default 0)
     let g:memolist_unite = 1
 
-    " remove filename prefix (default 0)
-    let g:memolist_filename_prefix_none = 1
+    " use arbitrary unite source (default is 'file')
+    let g:memolist_unite_source = "file_rec"
+
+    " use arbitrary unite option (default is empty)
+    let g:memolist_unite_option = "-auto-preview -start-insert"
 ```
 
 you can use other format and custom template.
