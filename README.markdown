@@ -7,64 +7,80 @@ memolist.vim is inspired by [jekyll.vim](https://github.com/csexton/jekyll.vim).
 
 Set the path to your memo directory in your .vimrc.(default directory `$HOME/memo`)
 
-    let g:memolist_path = "path/to/dir"
+```
+let g:memolist_path = "path/to/dir"
+```
 
 You may also want to add a few mappings to stream line the behavior:
 
-    nnoremap <Leader>mn  :MemoNew<CR>
-    nnoremap <Leader>ml  :MemoList<CR>
-    nnoremap <Leader>mg  :MemoGrep<CR>
+```
+nnoremap <Leader>mn  :MemoNew<CR>
+nnoremap <Leader>ml  :MemoList<CR>
+nnoremap <Leader>mg  :MemoGrep<CR>
+```
 
 ## Commands
 
 Create New Memo:
 
-    :MemoNew
+```
+:MemoNew
+```
 
 Show Memo List:
 
-    :MemoList
+```
+:MemoList
+```
 
 Grep Memo Directory:
 
-    :MemoGrep
+```
+:MemoGrep
+```
 
 ## Options
 
 ```vim
-    " suffix type (default markdown)
-    let g:memolist_memo_suffix = "markdown"
-    let g:memolist_memo_suffix = "txt"
+" suffix type (default markdown)
+let g:memolist_memo_suffix = "markdown"
+let g:memolist_memo_suffix = "txt"
 
-    " date format (default %Y-%m-%d %H:%M)
-    let g:memolist_memo_date = "%Y-%m-%d %H:%M"
-    let g:memolist_memo_date = "epoch"
-    let g:memolist_memo_date = "%D %T"
+" date format (default %Y-%m-%d %H:%M)
+let g:memolist_memo_date = "%Y-%m-%d %H:%M"
+let g:memolist_memo_date = "epoch"
+let g:memolist_memo_date = "%D %T"
 
-    " tags prompt (default 0)
-    let g:memolist_prompt_tags = 1
+" tags prompt (default 0)
+let g:memolist_prompt_tags = 1
 
-    " categories prompt (default 0)
-    let g:memolist_prompt_categories = 1
+" categories prompt (default 0)
+let g:memolist_prompt_categories = 1
 
-    " use qfixgrep (default 0)
-    let g:memolist_qfixgrep = 1
+" use qfixgrep (default 0)
+let g:memolist_qfixgrep = 1
 
-    " use vimfler (default 0)
-    let g:memolist_vimfiler = 1
+" use vimfler (default 0)
+let g:memolist_vimfiler = 1
 
-    " remove filename prefix (default 0)
-    let g:memolist_filename_prefix_none = 1
+" remove filename prefix (default 0)
+let g:memolist_filename_prefix_none = 1
 
-    " use unite (default 0)
-    let g:memolist_unite = 1
+" use unite (default 0)
+let g:memolist_unite = 1
 
-    " use arbitrary unite source (default is 'file')
-    let g:memolist_unite_source = "file_rec"
+" use arbitrary unite source (default is 'file')
+let g:memolist_unite_source = "file_rec"
 
-    " use arbitrary unite option (default is empty)
-    let g:memolist_unite_option = "-auto-preview -start-insert"
+" use arbitrary unite option (default is empty)
+let g:memolist_unite_option = "-auto-preview -start-insert"
 ```
+
+## memolist.vim with unite.vim
+
+![](http://blog.glidenote.com/images/2013/09/memolist_with_unite0.png)
+
+## Custom template
 
 you can use other format and custom template.
 (default memo format is `markdown`.)
@@ -72,12 +88,36 @@ you can use other format and custom template.
 if you use custom template file(`~/memotemplates/rdoc.txt`).  
 add the following lines to your `.vimrc`
 
-    let g:memolist_memo_suffix = "rdoc"
-    let g:memolist_template_dir_path = "~/memotemplates"
+```
+let g:memolist_memo_suffix = "rdoc"
+let g:memolist_template_dir_path = "~/memotemplates"
+```
 
 ## Install
 
-Copy it to your plugin and autoload directory.
+### Manually
+
+Put all files under $VIM.
+
+### Vundle (https://github.com/gmarik/vundle)
+
+Add the following configuration to your `.vimrc`.
+
+```
+Bundle 'glidenote/memolist.vim'
+```
+
+Install with `:BundleInstall`.
+
+### NeoBundle (https://github.com/Shougo/neobundle.vim)
+
+Add the following configuration to your `.vimrc`.
+
+```
+NeoBundle 'glidenote/memolist.vim'
+```
+
+Install with `:NeoBundleInstall`.
 
 ## License
 
