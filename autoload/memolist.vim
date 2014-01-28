@@ -67,7 +67,7 @@ function! s:esctitle(str)
 endfunction
 
 function! s:escarg(s)
-  return escape(a:s, ' ')
+  return escape(substitute(a:s, '\\', '/', 'g'), ' ')
 endfunction
 
 let g:memolist_path = expand(g:memolist_path, ':p')
