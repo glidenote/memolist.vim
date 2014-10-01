@@ -74,6 +74,10 @@ let g:memolist_unite_source = "file_rec"
 
 " use arbitrary unite option (default is empty)
 let g:memolist_unite_option = "-auto-preview -start-insert"
+
+" use various Ex commands (default '')
+let g:memolist_ex_cmd = 'CtrlP'
+let g:memolist_ex_cmd = 'NERDTree'
 ```
 
 ## memolist.vim with unite.vim
@@ -85,7 +89,7 @@ let g:memolist_unite_option = "-auto-preview -start-insert"
 you can use other format and custom template.
 (default memo format is `markdown`.)
 
-if you use custom template file(`~/memotemplates/rdoc.txt`).  
+if you use custom template file(`~/memotemplates/rdoc.txt`).
 add the following lines to your `.vimrc`
 
 ```

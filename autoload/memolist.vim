@@ -83,6 +83,8 @@ function! memolist#list()
     exe "VimFiler" g:memolist_vimfiler_option s:escarg(g:memolist_path)
   elseif get(g:, 'memolist_unite', 0) != 0
     exe "Unite" g:memolist_unite_source.':'.s:escarg(g:memolist_path) g:memolist_unite_option
+  elseif !empty(get(g:, 'memolist_ex_cmd', ''))
+    exe g:memolist_ex_cmd s:escarg(g:memolist_path)
   else
     exe "e" s:escarg(g:memolist_path)
   endif
