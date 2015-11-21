@@ -1,6 +1,6 @@
 # memolist.vim
 
-This is a vimscript for create and manage memo.  
+This is a vimscript for create and manage memo.
 memolist.vim is inspired by [jekyll.vim](https://github.com/csexton/jekyll.vim).
 
 ## Setup
@@ -102,6 +102,16 @@ let g:memolist_template_dir_path = "~/memotemplates"
 ### Manually
 
 Put all files under $VIM.
+
+### vim-plug (https://github.com/junegunn/vim-plug)
+
+Add the following configuration to your `.vimrc`.
+
+```
+Plug 'glidenote/memolist.vim'
+```
+
+Install with `:PlugInstall`.
 
 ### Vundle (https://github.com/gmarik/vundle)
 
