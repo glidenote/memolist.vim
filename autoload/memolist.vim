@@ -119,11 +119,15 @@ function! memolist#_complete_ymdhms(...)
 endfunction
 
 function! memolist#new(title)
+  call memolist#new_with_meta(a:title, [], [])
+endfunction
+
+function! memolist#new_with_meta(title, tags, categories)
   let items = {
   \ 'title': a:title,
   \ 'date':  localtime(),
-  \ 'tags':  [],
-  \ 'categories':  [],
+  \ 'tags':  a:tags,
+  \ 'categories': a:categories,
   \}
 
   if g:memolist_memo_date != 'epoch'
