@@ -78,6 +78,9 @@ let g:memolist_unite_option = "-auto-preview -start-insert"
 " use various Ex commands (default '')
 let g:memolist_ex_cmd = 'CtrlP'
 let g:memolist_ex_cmd = 'NERDTree'
+
+" use delimiter of array in yaml front matter (default is ' ')
+let g:memolist_delimiter_yaml_array = ','
 ```
 
 ## memolist.vim with unite.vim

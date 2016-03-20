@@ -57,6 +57,10 @@ if !exists('g:memolist_unite_option')
   let g:memolist_unite_option = ""
 endif
 
+if !exists('g:memolist_delimiter_yaml_array')
+  let g:memolist_delimiter_yaml_array = " "
+endif
+
 function! s:esctitle(str)
   let str = a:str
   let str = tolower(str)
@@ -133,11 +137,11 @@ function! memolist#new(title)
   endif
 
   if get(g:, 'memolist_prompt_tags', 0) != 0
-    let items['tags'] = join(split(input("Memo tags: "), '\s'), ' ')
+    let items['tags'] = join(split(input("Memo tags: "), '\s'), g:memolist_delimiter_yaml_array)
   endif
 
   if get(g:, 'memolist_prompt_categories', 0) != 0
-    let items['categories'] = join(split(input("Memo categories: "), '\s'), ' ')
+    let items['categories'] = join(split(input("Memo categories: "), '\s'), g:memolist_delimiter_yaml_array)
   endif
 
   if get(g:, 'memolist_filename_prefix_none', 0) != 0
