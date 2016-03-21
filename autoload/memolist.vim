@@ -184,8 +184,8 @@ function! memolist#new_with_meta(title, tags, categories)
   let items = {
   \ 'title': a:title,
   \ 'date':  localtime(),
-  \ 'tags':  a:tags,
-  \ 'categories': a:categories,
+  \ 'tags':  s:join_without_empty(a:tags),
+  \ 'categories': s:join_without_empty(a:categories),
   \}
 
   if g:memolist_memo_date != 'epoch'
