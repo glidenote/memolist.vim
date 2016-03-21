@@ -140,11 +140,11 @@ function! memolist#new_with_meta(title, tags, categories)
     return
   endif
 
-  if get(g:, 'memolist_prompt_tags', 0) != 0
+  if get(g:, 'memolist_prompt_tags', 0) != 0 && empty(items['tags'])
     let items['tags'] = join(split(input("Memo tags: "), '\s'), g:memolist_delimiter_yaml_array)
   endif
 
-  if get(g:, 'memolist_prompt_categories', 0) != 0
+  if get(g:, 'memolist_prompt_categories', 0) != 0 && empty(items['categories'])
     let items['categories'] = join(split(input("Memo categories: "), '\s'), g:memolist_delimiter_yaml_array)
   endif
 
