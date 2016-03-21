@@ -25,6 +25,10 @@ function! s:error(str)
   let v:errmsg = a:str
 endfunction
 
+function! s:join_without_empty(string)
+  return join(split(a:string, '\v\s+'), g:memolist_delimiter_yaml_array)
+endfunction
+
 " retun lines contain beween start pattern and end pattern.
 " retun lines don't contain start pattern and end pattern.
 function! s:getline_regexp_range(start_pattern, end_pattern)
@@ -195,11 +199,11 @@ function! memolist#new_with_meta(title, tags, categories)
   endif
 
   if get(g:, 'memolist_prompt_tags', 0) != 0 && empty(items['tags'])
-    let items['tags'] = join(split(input("Memo tags: "), '\s'), g:memolist_delimiter_yaml_array)
+    let items['tags'] = s:join_without_empty(input("Memo tags: "))
   endif
 
   if get(g:, 'memolist_prompt_categories', 0) != 0 && empty(items['categories'])
-    let items['categories'] = join(split(input("Memo categories: "), '\s'), g:memolist_delimiter_yaml_array)
+    let items['categories'] = s:join_without_empty(input("Memo categories: "))
   endif
 
   if get(g:, 'memolist_filename_prefix_none', 0) != 0
