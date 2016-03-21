@@ -24,6 +24,38 @@ function! s:error(str)
   echohl None
   let v:errmsg = a:str
 endfunction
+
+" retun lines contain beween start pattern and end pattern.
+" retun lines don't contain start pattern and end pattern.
+function! s:getline_regexp_range(start_pattern, end_pattern)
+  call cursor(1, 1)
+  let start_line_number =  search(a:start_pattern, 'nc') + 1
+  call cursor(start_line_number, 1)
+  let end_line_number =  search(a:end_pattern, 'n') - 1
+  return getline(start_line_number, end_line_number)
+endfunction
+
+function! s:get_yaml_front_matter()
+  return s:getline_regexp_range(
+        \ g:memolist_delimiter_yaml_start,
+        \ g:memolist_delimiter_yaml_end)
+endfunction
+
+function! s:get_items_from_yaml_front_matter()
+  let items = {}
+  for line in s:get_yaml_front_matter()
+    let item_name = matchstr(line, '\v^.+\ze:')
+    let item_value = matchstr(line, '\v^.+:\s+\zs.+\ze$')
+    if item_value[0] == '[' && item_value[-1:-1] == ']'
+      let item_tmp = split(item_value[1:-2], g:memolist_delimiter_yaml_array)
+      unlet item_value
+      let item_value = item_tmp
+    endif
+    let items[item_name] = item_value
+    unlet item_value
+  endfor
+  return items
+endfunction
 " }}}1
 
 "------------------------
@@ -59,6 +91,14 @@ endif
 
 if !exists('g:memolist_delimiter_yaml_array')
   let g:memolist_delimiter_yaml_array = " "
+endif
+
+if !exists('g:memolist_delimiter_yaml_start')
+  let g:memolist_delimiter_yaml_array = "=========="
+endif
+
+if !exists('g:memolist_delimiter_yaml_end')
+  let g:memolist_delimiter_yaml_array = "- - -"
 endif
 
 function! s:esctitle(str)
@@ -120,6 +160,13 @@ endfunction
 
 function! memolist#new(title)
   call memolist#new_with_meta(a:title, [], [])
+endfunction
+
+function! memolist#new_copying_meta(title)
+  let items =  s:get_items_from_yaml_front_matter()
+  call memolist#new_with_meta(a:title, join(items['tags'],
+        \ g:memolist_delimiter_yaml_array), join(items['categories'],
+        \ g:memolist_delimiter_yaml_array))
 endfunction
 
 function! memolist#new_with_meta(title, tags, categories)
