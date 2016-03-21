@@ -101,8 +101,8 @@ COMMANDS                                        *memolist-commands*
 <
                                                 *memolist-:MemoNewCopyingMeta*
 :MemoNewCopyingMeta     Create a new Memo copying yaml front matter of you'are editting file
-    copy items: tags, categories
-    use current time as date and not copy the date of editting file
+    Copy items: tags, categories.
+    Use current time as date and not copy the date of editting file.
     Example: >
         " copy tags and categories
         :MemoNewCopyingMeta 'title'
