@@ -58,6 +58,16 @@ Example: >
 
     " remove filename prefix (default 0)
     let g:memolist_filename_prefix_none = 1
+
+    " use for tags and categories in yaml front matter (default " ")
+    let g:memolist_delimiter_yaml_array = ", "
+
+    " use when get items from yaml front matter
+      " first line string pattern of yaml front matter (default "==========")
+      let g:memolist_delimiter_yaml_array = "---"
+
+      " last line string pattern of yaml front matter (default "- - -")
+      let g:memolist_delimiter_yaml_array = "---"
 <
 You may also want to add a few mappings to stream line the behavior: >
     map <Leader>mn  :MemoNew<CR>

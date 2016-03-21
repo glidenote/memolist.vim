@@ -81,6 +81,13 @@ let g:memolist_ex_cmd = 'NERDTree'
 
 " use delimiter of array in yaml front matter (default is ' ')
 let g:memolist_delimiter_yaml_array = ','
+
+" use when get items from yaml front matter
+  " first line string pattern of yaml front matter (default "==========")
+  let g:memolist_delimiter_yaml_array = "---"
+
+  " last line string pattern of yaml front matter (default "- - -")
+  let g:memolist_delimiter_yaml_array = "---"
 ```
 
 ## memolist.vim with unite.vim
