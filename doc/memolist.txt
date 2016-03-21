@@ -125,6 +125,11 @@ COMMANDS                                        *memolist-commands*
 
         " copy nothing
         :MemoNewCopyingMeta 'title', 'tags categories'
+
+        " You'll be asked title
+        :MemoNewCopyingMeta
+        :MemoNewCopyingMeta ''
+        :MemoNewCopyingMeta '', 'tags'
 <
                                                 *memolist-:MemoGrep*
 :MemoGrep               Grep Memo Directory

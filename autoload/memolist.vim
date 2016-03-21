@@ -169,16 +169,18 @@ function! memolist#new(title)
   call memolist#new_with_meta(a:title, [], [])
 endfunction
 
-function! memolist#new_copying_meta(title, exclude_item_names)
+function! memolist#new_copying_meta(...)
+  let title = a:0 > 0 ? a:1 : ''
+  let exclude_item_names = a:0 > 1 ? a:2 : ''
   let items =  s:get_items_from_yaml_front_matter()
-  if !empty(a:exclude_item_names)
-    for item_name in split(a:exclude_item_names, '\s')
+  if !empty(exclude_item_names)
+    for item_name in split(exclude_item_names, '\s')
       if has_key(items, item_name)
         let items[item_name] = type(items[item_name]) == type([]) ? [] : ''
       end
     endfor
   endif
-  call memolist#new_with_meta(a:title, items['tags'], items['categories'])
+  call memolist#new_with_meta(title, items['tags'], items['categories'])
 endfunction
 
 function! memolist#new_with_meta(title, tags, categories)
