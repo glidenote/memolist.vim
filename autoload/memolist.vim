@@ -162,8 +162,15 @@ function! memolist#new(title)
   call memolist#new_with_meta(a:title, [], [])
 endfunction
 
-function! memolist#new_copying_meta(title)
+function! memolist#new_copying_meta(title, exclude_item_names)
   let items =  s:get_items_from_yaml_front_matter()
+  if !empty(a:exclude_item_names)
+    for item_name in split(a:exclude_item_names, '\s')
+      if has_key(items, item_name)
+        let items[item_name] = type(items[item_name]) == type([]) ? [] : ''
+      end
+    endfor
+  endif
   call memolist#new_with_meta(a:title, join(items['tags'],
         \ g:memolist_delimiter_yaml_array), join(items['categories'],
         \ g:memolist_delimiter_yaml_array))
