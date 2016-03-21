@@ -94,6 +94,23 @@ COMMANDS                                        *memolist-commands*
         " ask you categories if g:memolist_prompt_categories is 1.
         :MemoNewWithMeta 'title', 'tag1 tag2', ''
 <
+                                                *memolist-:MemoNewCopyingMeta*
+:MemoNewCopyingMeta     Create a new Memo copying yaml front matter of you'are editting file
+    copy items: tags, categories
+    use current time as date and not copy the date of editting file
+    Example: >
+        " copy tags and categories
+        :MemoNewCopyingMeta 'title'
+
+        " copy categories
+        :MemoNewCopyingMeta 'title', 'tags'
+
+        " copy tags
+        :MemoNewCopyingMeta 'title', 'categories'
+
+        " copy nothing
+        :MemoNewCopyingMeta 'title', 'tags categories'
+<
                                                 *memolist-:MemoGrep*
 :MemoGrep               Grep Memo Directory
 
