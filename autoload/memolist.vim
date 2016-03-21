@@ -25,8 +25,10 @@ function! s:error(str)
   let v:errmsg = a:str
 endfunction
 
-function! s:join_without_empty(string)
-  return join(split(a:string, '\v\s+'), g:memolist_delimiter_yaml_array)
+function! s:join_without_empty(string, ...)
+  if empty(a:string) | return '' | endif
+  let pattern = a:0 > 0 ? a:1 : '\v\s+'
+  return join(split(a:string, pattern), g:memolist_delimiter_yaml_array)
 endfunction
 
 " retun lines contain beween start pattern and end pattern.
