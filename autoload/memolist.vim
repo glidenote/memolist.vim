@@ -25,10 +25,11 @@ function! s:error(str)
   let v:errmsg = a:str
 endfunction
 
-function! s:join_without_empty(string, ...)
-  if empty(a:string) | return '' | endif
+function! s:join_without_empty(list, ...)
+  if empty(a:list) | return '' | endif
   let pattern = a:0 > 0 ? a:1 : '\v\s+'
-  return join(split(a:string, pattern), g:memolist_delimiter_yaml_array)
+  return join(type(a:list) == type([]) ? a:list : split(a:list, pattern),
+        \ g:memolist_delimiter_yaml_array)
 endfunction
 
 " retun lines contain beween start pattern and end pattern.
@@ -177,9 +178,7 @@ function! memolist#new_copying_meta(title, exclude_item_names)
       end
     endfor
   endif
-  call memolist#new_with_meta(a:title, join(items['tags'],
-        \ g:memolist_delimiter_yaml_array), join(items['categories'],
-        \ g:memolist_delimiter_yaml_array))
+  call memolist#new_with_meta(a:title, items['tags'], items['categories'])
 endfunction
 
 function! memolist#new_with_meta(title, tags, categories)
