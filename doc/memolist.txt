@@ -79,6 +79,11 @@ COMMANDS                                        *memolist-commands*
         let g:memolist_prompt_tags = 1
         let g:memolist_prompt_categories = 1
 <
+        Ignore first and last spaces and reguard consecutive spaces as one: >
+        " the following tags are [tag1, tag2]
+        tags:   tag1    tag2
+        tags: tag1 tag2
+<
                                                 *memolist-:MemoNewWithMeta*
 :MemoNewWithMeta        Create a new Memo passing tags and categories
     Example: >
