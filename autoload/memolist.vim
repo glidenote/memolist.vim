@@ -101,11 +101,11 @@ if !exists('g:memolist_delimiter_yaml_array')
 endif
 
 if !exists('g:memolist_delimiter_yaml_start')
-  let g:memolist_delimiter_yaml_array = "=========="
+  let g:memolist_delimiter_yaml_start = "=========="
 endif
 
 if !exists('g:memolist_delimiter_yaml_end')
-  let g:memolist_delimiter_yaml_array = "- - -"
+  let g:memolist_delimiter_yaml_end  = "- - -"
 endif
 
 function! s:esctitle(str)
