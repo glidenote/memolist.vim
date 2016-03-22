@@ -58,6 +58,16 @@ Example: >
 
     " remove filename prefix (default 0)
     let g:memolist_filename_prefix_none = 1
+
+    " use for tags and categories in yaml front matter (default " ")
+    let g:memolist_delimiter_yaml_array = ", "
+
+    " use when get items from yaml front matter
+      " first line string pattern of yaml front matter (default "==========")
+      let g:memolist_delimiter_yaml_array = "---"
+
+      " last line string pattern of yaml front matter (default "- - -")
+      let g:memolist_delimiter_yaml_array = "---"
 <
 You may also want to add a few mappings to stream line the behavior: >
     map <Leader>mn  :MemoNew<CR>
@@ -79,6 +89,11 @@ COMMANDS                                        *memolist-commands*
         let g:memolist_prompt_tags = 1
         let g:memolist_prompt_categories = 1
 <
+        Ignore first and last spaces and reguard consecutive spaces as one: >
+        " the following tags are [tag1, tag2]
+        tags:   tag1    tag2
+        tags: tag1 tag2
+<
                                                 *memolist-:MemoNewWithMeta*
 :MemoNewWithMeta        Create a new Memo passing tags and categories
     Example: >
@@ -93,6 +108,28 @@ COMMANDS                                        *memolist-commands*
 
         " ask you categories if g:memolist_prompt_categories is 1.
         :MemoNewWithMeta 'title', 'tag1 tag2', ''
+<
+                                                *memolist-:MemoNewCopyingMeta*
+:MemoNewCopyingMeta     Create a new Memo copying yaml front matter of you'are editting file
+    Copy items: tags, categories.
+    Use current time as date and not copy the date of editting file.
+    Example: >
+        " copy tags and categories
+        :MemoNewCopyingMeta 'title'
+
+        " copy categories
+        :MemoNewCopyingMeta 'title', 'tags'
+
+        " copy tags
+        :MemoNewCopyingMeta 'title', 'categories'
+
+        " copy nothing
+        :MemoNewCopyingMeta 'title', 'tags categories'
+
+        " You'll be asked title
+        :MemoNewCopyingMeta
+        :MemoNewCopyingMeta ''
+        :MemoNewCopyingMeta '', 'tags'
 <
                                                 *memolist-:MemoGrep*
 :MemoGrep               Grep Memo Directory

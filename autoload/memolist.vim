@@ -24,6 +24,45 @@ function! s:error(str)
   echohl None
   let v:errmsg = a:str
 endfunction
+
+function! s:join_without_empty(list, ...)
+  if empty(a:list) | return '' | endif
+  let pattern = a:0 > 0 ? a:1 : '\v\s+'
+  return join(type(a:list) == type([]) ? a:list : split(a:list, pattern),
+        \ g:memolist_delimiter_yaml_array)
+endfunction
+
+" retun lines contain beween start pattern and end pattern.
+" retun lines don't contain start pattern and end pattern.
+function! s:getline_regexp_range(start_pattern, end_pattern)
+  call cursor(1, 1)
+  let start_line_number =  search(a:start_pattern, 'nc') + 1
+  call cursor(start_line_number, 1)
+  let end_line_number =  search(a:end_pattern, 'n') - 1
+  return getline(start_line_number, end_line_number)
+endfunction
+
+function! s:get_yaml_front_matter()
+  return s:getline_regexp_range(
+        \ g:memolist_delimiter_yaml_start,
+        \ g:memolist_delimiter_yaml_end)
+endfunction
+
+function! s:get_items_from_yaml_front_matter()
+  let items = {}
+  for line in s:get_yaml_front_matter()
+    let item_name = matchstr(line, '\v^.+\ze:')
+    let item_value = matchstr(line, '\v^.+:\s+\zs.+\ze$')
+    if item_value[0] == '[' && item_value[-1:-1] == ']'
+      let item_tmp = split(item_value[1:-2], g:memolist_delimiter_yaml_array)
+      unlet item_value
+      let item_value = item_tmp
+    endif
+    let items[item_name] = item_value
+    unlet item_value
+  endfor
+  return items
+endfunction
 " }}}1
 
 "------------------------
@@ -59,6 +98,14 @@ endif
 
 if !exists('g:memolist_delimiter_yaml_array')
   let g:memolist_delimiter_yaml_array = " "
+endif
+
+if !exists('g:memolist_delimiter_yaml_start')
+  let g:memolist_delimiter_yaml_start = "=========="
+endif
+
+if !exists('g:memolist_delimiter_yaml_end')
+  let g:memolist_delimiter_yaml_end  = "- - -"
 endif
 
 function! s:esctitle(str)
@@ -122,12 +169,26 @@ function! memolist#new(title)
   call memolist#new_with_meta(a:title, [], [])
 endfunction
 
+function! memolist#new_copying_meta(...)
+  let title = a:0 > 0 ? a:1 : ''
+  let exclude_item_names = a:0 > 1 ? a:2 : ''
+  let items =  s:get_items_from_yaml_front_matter()
+  if !empty(exclude_item_names)
+    for item_name in split(exclude_item_names, '\s')
+      if has_key(items, item_name)
+        let items[item_name] = type(items[item_name]) == type([]) ? [] : ''
+      end
+    endfor
+  endif
+  call memolist#new_with_meta(title, items['tags'], items['categories'])
+endfunction
+
 function! memolist#new_with_meta(title, tags, categories)
   let items = {
   \ 'title': a:title,
   \ 'date':  localtime(),
-  \ 'tags':  a:tags,
-  \ 'categories': a:categories,
+  \ 'tags':  s:join_without_empty(a:tags),
+  \ 'categories': s:join_without_empty(a:categories),
   \}
 
   if g:memolist_memo_date != 'epoch'
@@ -141,11 +202,11 @@ function! memolist#new_with_meta(title, tags, categories)
   endif
 
   if get(g:, 'memolist_prompt_tags', 0) != 0 && empty(items['tags'])
-    let items['tags'] = join(split(input("Memo tags: "), '\s'), g:memolist_delimiter_yaml_array)
+    let items['tags'] = s:join_without_empty(input("Memo tags: "))
   endif
 
   if get(g:, 'memolist_prompt_categories', 0) != 0 && empty(items['categories'])
-    let items['categories'] = join(split(input("Memo categories: "), '\s'), g:memolist_delimiter_yaml_array)
+    let items['categories'] = s:join_without_empty(input("Memo categories: "))
   endif
 
   if get(g:, 'memolist_filename_prefix_none', 0) != 0
