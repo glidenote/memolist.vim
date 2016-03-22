@@ -1,6 +1,6 @@
 " memolist.vim
 " Maintainer:  Akira Maeda <glidenote@gmail.com>
-" Version:  0.1.2
+" Version:  0.2.0
 " See doc/memolist.txt for instructions and usage.
 
 " Code {{{1
