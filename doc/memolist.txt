@@ -79,13 +79,27 @@ COMMANDS                                        *memolist-commands*
         let g:memolist_prompt_tags = 1
         let g:memolist_prompt_categories = 1
 <
+                                                *memolist-:MemoNewWithMeta*
+:MemoNewWithMeta        Create a new Memo passing tags and categories
+    Example: >
+        " ask you tags and categories if their prompt options are true.
+        :MemoNewWithMeta 'title', '', ''
+
+        " no ask you tags and categories always.
+        :MemoNewWithMeta 'title', 'tag1 tag2', 'category1 category2'
+
+        " ask you tags if g:memolist_prompt_tags is 1.
+        :MemoNewWithMeta 'title', '', 'category1 category2'
+
+        " ask you categories if g:memolist_prompt_categories is 1.
+        :MemoNewWithMeta 'title', 'tag1 tag2', ''
+<
                                                 *memolist-:MemoGrep*
 :MemoGrep               Grep Memo Directory
 
     You'll be asked to search the keyword like following: >
         MemoGrep word:
 <
-
 ==============================================================================
 TEMPLATE *memolist-template*
 

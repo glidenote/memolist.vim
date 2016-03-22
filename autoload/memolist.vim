@@ -119,11 +119,15 @@ function! memolist#_complete_ymdhms(...)
 endfunction
 
 function! memolist#new(title)
+  call memolist#new_with_meta(a:title, [], [])
+endfunction
+
+function! memolist#new_with_meta(title, tags, categories)
   let items = {
   \ 'title': a:title,
   \ 'date':  localtime(),
-  \ 'tags':  [],
-  \ 'categories':  [],
+  \ 'tags':  a:tags,
+  \ 'categories': a:categories,
   \}
 
   if g:memolist_memo_date != 'epoch'
@@ -136,11 +140,11 @@ function! memolist#new(title)
     return
   endif
 
-  if get(g:, 'memolist_prompt_tags', 0) != 0
+  if get(g:, 'memolist_prompt_tags', 0) != 0 && empty(items['tags'])
     let items['tags'] = join(split(input("Memo tags: "), '\s'), g:memolist_delimiter_yaml_array)
   endif
 
-  if get(g:, 'memolist_prompt_categories', 0) != 0
+  if get(g:, 'memolist_prompt_categories', 0) != 0 && empty(items['categories'])
     let items['categories'] = join(split(input("Memo categories: "), '\s'), g:memolist_delimiter_yaml_array)
   endif
 

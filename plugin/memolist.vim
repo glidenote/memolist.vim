@@ -23,6 +23,7 @@ endif
 command! -nargs=0 MemoList :call memolist#list()
 command! -nargs=? MemoGrep :call memolist#grep(<q-args>)
 command! -nargs=? MemoNew :call memolist#new(<q-args>)
+command! -nargs=* MemoNewWithMeta :call memolist#new_with_meta(<args>)
 
 let &cpo = s:cpo_save
 
