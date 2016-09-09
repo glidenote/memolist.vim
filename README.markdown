@@ -75,6 +75,15 @@ let g:memolist_unite_source = "file_rec"
 " use arbitrary unite option (default is empty)
 let g:memolist_unite_option = "-auto-preview -start-insert"
 
+" use denite (default 0)
+let g:memolist_denite = 1
+
+" use arbitrary denite source (default is 'file_rec')
+let g:memolist_denite_source = "anything"
+
+" use arbitrary denite option (default is empty)
+let g:memolist_denite_option = "anything"
+
 " use various Ex commands (default '')
 let g:memolist_ex_cmd = 'CtrlP'
 let g:memolist_ex_cmd = 'NERDTree'
