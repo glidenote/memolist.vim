@@ -92,11 +92,11 @@ let g:memolist_ex_cmd = 'NERDTree'
 let g:memolist_delimiter_yaml_array = ','
 
 " use when get items from yaml front matter
-  " first line string pattern of yaml front matter (default "==========")
-  let g:memolist_delimiter_yaml_array = "---"
+" first line string pattern of yaml front matter (default "==========")
+let g:memolist_delimiter_yaml_start = "---"
 
-  " last line string pattern of yaml front matter (default "- - -")
-  let g:memolist_delimiter_yaml_array = "---"
+" last line string pattern of yaml front matter (default "- - -")
+let g:memolist_delimiter_yaml_end  = "---"
 ```
 
 ## memolist.vim with unite.vim
