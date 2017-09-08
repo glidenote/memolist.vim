@@ -141,9 +141,9 @@ function! memolist#list()
   if get(g:, 'memolist_vimfiler', 0) != 0
     exe "VimFiler" g:memolist_vimfiler_option s:escarg(g:memolist_path)
   elseif get(g:, 'memolist_unite', 0) != 0
-    exe "Unite" g:memolist_unite_source.':'.s:escarg(g:memolist_path) g:memolist_unite_option
+    exe "Unite" g:memolist_unite_source.':'.escape(s:escarg(g:memolist_path), ':') g:memolist_unite_option
   elseif get(g:, 'memolist_denite', 0) != 0
-    exe "Denite" g:memolist_denite_source.':'.s:escarg(g:memolist_path) g:memolist_denite_option
+    exe "Denite" g:memolist_denite_source.':'.escape(s:escarg(g:memolist_path), ':') g:memolist_denite_option
   elseif !empty(get(g:, 'memolist_ex_cmd', ''))
     exe g:memolist_ex_cmd s:escarg(g:memolist_path)
   else
