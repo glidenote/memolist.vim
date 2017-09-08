@@ -231,21 +231,23 @@ function! memolist#new_with_meta(title, tags, categories)
   echo "Making that memo " . file_name
   exe (&l:modified ? "sp" : "e") s:escarg(g:memolist_path . "/" . file_name)
 
-  " memo template
-  let template = s:default_template
-  if g:memolist_template_dir_path != ""
-    let path = expand(g:memolist_template_dir_path, ":p")
-    let path = path . "/" . g:memolist_memo_suffix . ".txt"
-    if filereadable(path)
-      let template = readfile(path)
+  if !filereadable(s:escarg(g:memolist_path . "/" . file_name))
+    " memo template
+    let template = s:default_template
+    if g:memolist_template_dir_path != ""
+      let path = expand(g:memolist_template_dir_path, ":p")
+      let path = path . "/" . g:memolist_memo_suffix . ".txt"
+      if filereadable(path)
+        let template = readfile(path)
+      endif
     endif
+    " apply template
+    let old_undolevels = &undolevels
+    set undolevels=-1
+    call append(0, s:apply_template(template, items))
+    let &undolevels = old_undolevels
+    set nomodified
   endif
-  " apply template
-  let old_undolevels = &undolevels
-  set undolevels=-1
-  call append(0, s:apply_template(template, items))
-  let &undolevels = old_undolevels
-  set nomodified
 
 endfunction
 
