@@ -60,7 +60,7 @@ let g:memolist_prompt_categories = 1
 " use qfixgrep (default 0)
 let g:memolist_qfixgrep = 1
 
-" use vimfler (default 0)
+" use vimfiler (default 0)
 let g:memolist_vimfiler = 1
 
 " remove filename prefix (default 0)
