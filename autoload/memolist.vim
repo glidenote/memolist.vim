@@ -144,6 +144,8 @@ function! memolist#list()
     exe "Unite" g:memolist_unite_source.':'.escape(s:escarg(g:memolist_path), ':') g:memolist_unite_option
   elseif get(g:, 'memolist_denite', 0) != 0
     exe "Denite" g:memolist_denite_source.':'.escape(s:escarg(g:memolist_path), ':') g:memolist_denite_option
+  elseif get(g:, 'memolist_fzf', 0) != 0
+    exe "FZF" s:escarg(g:memolist_path)
   elseif !empty(get(g:, 'memolist_ex_cmd', ''))
     exe g:memolist_ex_cmd s:escarg(g:memolist_path)
   else

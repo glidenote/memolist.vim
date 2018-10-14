@@ -63,6 +63,9 @@ let g:memolist_qfixgrep = 1
 " use vimfiler (default 0)
 let g:memolist_vimfiler = 1
 
+" use fzf (default 0)
+let g:memolist_fzf = 1
+
 " remove filename prefix (default 0)
 let g:memolist_filename_prefix_none = 1
 
