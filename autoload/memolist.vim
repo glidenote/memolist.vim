@@ -94,7 +94,7 @@ endif
 
 if !exists('g:memolist_denite_source')
   let s:denite_ver = (exists('*denite#get_status_mode') ? 2 : 3)
-  if s:s:denite_ver == 3
+  if s:denite_ver == 3
     let g:memolist_denite_source = "file/rec"
   else
     let g:memolist_denite_source = "file_rec"
