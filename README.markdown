@@ -90,6 +90,7 @@ let g:memolist_denite_option = "anything"
 " use various Ex commands (default '')
 let g:memolist_ex_cmd = 'CtrlP'
 let g:memolist_ex_cmd = 'NERDTree'
+let g:memolist_ex_cmd = 'Defx'
 
 " use delimiter of array in yaml front matter (default is ' ')
 let g:memolist_delimiter_yaml_array = ','
