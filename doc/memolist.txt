@@ -29,6 +29,9 @@ Example: >
     let g:memolist_memo_date = "epoch"
     let g:memolist_memo_date = "%D %T"
 
+    " filename data format (default %Y-%m-%d-)
+    let g:memolist_filename_date = "%y%m%d_"
+
     " tags prompt (default 0)
     let g:memolist_prompt_tags = 1
 
