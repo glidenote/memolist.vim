@@ -163,7 +163,7 @@ function! memolist#list()
 endfunction
 
 function! memolist#files()
-  return systemlist('find ' . s:escarg(g:memolist_path) . ' -type f')
+  return glob(printf('%s/**/*.*', s:escarg(g:memolist_path)), 1, 1)
 endfunction
 
 function! memolist#grep(word)
