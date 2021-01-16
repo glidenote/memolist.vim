@@ -162,6 +162,10 @@ function! memolist#list()
   endif
 endfunction
 
+function! memolist#files()
+  return systemlist('find ' . s:escarg(g:memolist_path) . ' -type f')
+endfunction
+
 function! memolist#grep(word)
   let word = a:word
   if word == ''
