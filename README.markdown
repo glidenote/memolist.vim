@@ -159,4 +159,4 @@ Install with `:NeoBundleInstall`.
 
 ## License
 
-Lcense: Same terms as Vim itself (see [license](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license))
+License: Same terms as Vim itself (see [license](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license))
